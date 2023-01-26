@@ -14,7 +14,7 @@ from vex import *
 timeperfoot = 1 
 timefor360 = 2
 speed = 100
-
+timepertile = timeperfoot * 2
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -35,9 +35,13 @@ def right(degree):
     global timefor360
     ttime = degree * (timefor360/360)
     go(ttime, 0, 0, 1, 1)
-def forward(ttime):
+def forward(tiles):
+    global timepertile
+    ttime = tiles * timepertile
     go(ttime, 1, 1, 1, 1)
-def backward(ttime):
+def backward(tiles):
+    global timepertile
+    ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
 def joystickmovement():
     a1 = controller_3.axis1.position()
