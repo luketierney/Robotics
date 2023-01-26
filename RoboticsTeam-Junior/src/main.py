@@ -11,13 +11,6 @@
 from vex import *
 
 # Begin project code
-<<<<<<< HEAD
-timeperfoot = 1 
-timefor360 = 2
-speed = 100
-timepertile = timeperfoot * 2
-=======
->>>>>>> Plan-A-Autonmous
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
