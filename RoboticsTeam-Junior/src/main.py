@@ -39,6 +39,9 @@ def backward(tiles):
     global timepertile
     ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
+def aclaw(movement, ttime):
+    motor_A6.set_velocity(movement, PERCENT)
+    motor_A6.stop()
 def joystickmovement():
     a1 = controller_3.axis1.position()
     a2 = controller_4.axis1.position()
