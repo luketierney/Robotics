@@ -10,26 +10,65 @@
 # Library imports
 from vex import *
 
-# Brain should be defined by default
-brain=Brain()
+# Begin project code
+timeperfoot = 1 
+timefor360 = 2
+speed = 100
 
-brain.screen.print("Hello V5")
+def go(ttime, one, two, three, four):
+    global speed
+    motor_1.set_velocity(speed*one, PERCENT)
+    motor_2.set_velocity(speed*two, PERCENT)
+    motor_3.set_velocity(speed*three, PERCENT)
+    motor_4.set_velocity(speed*four, PERCENT)
+    wait(ttime*1000, SECONDS)
+    motor_1.stop()
+    motor_2.stop()
+    motor_3.stop()
+    motor_4.stop()
 
-
-MyVariable = 0
-message1 = Event()
-
+def left(degree):
+    global timefor360
+    ttime = degree * (timefor360/360)
+    go(ttime, 1, 1, 0, 0)
+def right(degree):
+    global timefor360
+    ttime = degree * (timefor360/360)
+    go(ttime, 0, 0, 1, 1)
+def forward(ttime):
+    go(ttime, 1, 1, 1, 1)
+def backward(ttime):
+    go(ttime, -1, -1, -1, -1)
+def joystickmovement():
+    a1 = controller_3.axis1.position()
+    a2 = controller_4.axis1.position()
+    a2 += 100
+    leftside = a1*a2/10000 
+    rightside = a1*(-a2+100)/10000
+    go(.0005, leftside, leftside, rightside, rightside)
+def armvert():
+    if controller_L1.buttonUp.pressing():
+        motor_A5.set_velocity(25, PERCENT)
+    else:
+        motor_A5.stop()
+def claw():
+    if controller_R1.buttonUp.pressing():
+        motor_A6.set_velocity(25, PERCENT)
+    elif controller_R2.buttonUp.pressing():
+        motor_A6.set_velocity(-25, PERCENT)
+    else:
+        motor_A6.stop()
 def when_started1():
-    global myVariable, message1
-    pass
-
-def ondriver_drivercontrol_0():
-    global myVariable, message1
-    brain.timer.clear()
+    brain.screen.draw_circle(0, 0, 10)
+    motor_1.set_velocity(0, PERCENT)
 
 def onauton_autonomous_0():
-    global myVariable, message1
-    message1.broadcast()
+    brain.timer.clear()
+    for each in range(0,1):
+        pass
+
+def ondriver_drivercontrol_0():
+    brain.timer.clear()
 
 # create a function for handling the starting and stopping of all autonomous tasks
 def vexcode_auton_function():
