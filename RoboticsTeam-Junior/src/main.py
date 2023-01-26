@@ -79,7 +79,7 @@ def ondriver_drivercontrol_0():
         joystickmovement()
         armvert()
         claw()
-        if brain.timer.time(SECONDS) >= 105:
+        if brain.timer.time(SECONDS) >= 104:
             break
 
 # create a function for handling the starting and stopping of all autonomous tasks
