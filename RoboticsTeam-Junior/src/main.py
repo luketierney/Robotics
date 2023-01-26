@@ -11,10 +11,6 @@
 from vex import *
 
 # Begin project code
-timeperfoot = 1 
-timefor360 = 2
-speed = 100
-timepertile = timeperfoot * 2
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -63,7 +59,10 @@ def claw():
     else:
         motor_A6.stop()
 def when_started1():
-    brain.screen.draw_circle(0, 0, 10)
+    timeperfoot = 1 
+    timefor360 = 2
+    speed = 100
+    timepertile = timeperfoot * 2
     motor_1.set_velocity(0, PERCENT)
 
 def onauton_autonomous_0():
@@ -73,6 +72,12 @@ def onauton_autonomous_0():
 
 def ondriver_drivercontrol_0():
     brain.timer.clear()
+    while True:
+        joystickmovement()
+        armvert()
+        claw()
+        if brain.timer.time(SECONDS) >= 105:
+            break
 
 # create a function for handling the starting and stopping of all autonomous tasks
 def vexcode_auton_function():
