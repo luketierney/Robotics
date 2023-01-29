@@ -9,8 +9,12 @@
 
 # Library imports
 from vex import *
-
+import math
 # Begin project code
+timepertile = 0
+timefor360 = 0
+speed = 0
+a4 = 1
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -40,12 +44,15 @@ def backward(tiles):
     ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
 def joystickmovement():
-    a1 = controller_1.axis3.position()
+    global a4
+    a1 = controller_1.axis1.position()
     a2 = controller_1.axis4.position()
-    a2 += 100
-    leftside = a1*a2/10000 
-    rightside = a1*(-a2+100)/10000
-    go(.0005, leftside, leftside, rightside, rightside)
+    leftside = a3*a2/10000 
+    rightside = a3*(-a2+100)/10000
+    motor_1.set_velocity(speed*leftside, PERCENT)
+    motor_2.set_velocity(-speed*leftside, PERCENT)
+    motor_3.set_velocity(-speed*rightside, PERCENT)
+    motor_4.set_velocity(speed*rightside, PERCENT)
 def when_started1():
     timeperfoot = 1 
     timefor360 = 2
