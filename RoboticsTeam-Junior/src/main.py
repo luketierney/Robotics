@@ -14,7 +14,6 @@ import math
 timepertile = 0
 timefor360 = 0
 speed = 0
-a4 = 1
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -44,7 +43,6 @@ def backward(tiles):
     ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
 def joystickmovement():
-    global a4
     a1 = controller_1.axis1.position()
     a2 = controller_1.axis4.position()
     leftside = a3*a2/10000 
