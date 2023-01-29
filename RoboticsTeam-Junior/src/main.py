@@ -39,34 +39,23 @@ def backward(tiles):
     global timepertile
     ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
-def aclaw(movement, ttime):
-    motor_A6.set_velocity(movement, PERCENT)
-    motor_A6.stop()
 def joystickmovement():
-    a1 = controller_3.axis1.position()
-    a2 = controller_4.axis1.position()
+    a1 = controller_1.axis3.position()
+    a2 = controller_1.axis4.position()
     a2 += 100
     leftside = a1*a2/10000 
     rightside = a1*(-a2+100)/10000
     go(.0005, leftside, leftside, rightside, rightside)
-def armvert():
-    if controller_L1.buttonUp.pressing():
-        motor_A5.set_velocity(25, PERCENT)
-    else:
-        motor_A5.stop()
-def claw():
-    if controller_R1.buttonUp.pressing():
-        motor_A6.set_velocity(25, PERCENT)
-    elif controller_R2.buttonUp.pressing():
-        motor_A6.set_velocity(-25, PERCENT)
-    else:
-        motor_A6.stop()
 def when_started1():
     timeperfoot = 1 
     timefor360 = 2
     speed = 100
     timepertile = timeperfoot * 2
     motor_1.set_velocity(0, PERCENT)
+    motor_2.set_velocity(0, PERCENT)
+    motor_3.set_velocity(0, PERCENT)
+    motor_4.set_velocity(0, PERCENT)
+
 
 def onauton_autonomous_0():
     brain.timer.clear()
@@ -77,8 +66,6 @@ def ondriver_drivercontrol_0():
     brain.timer.clear()
     while True:
         joystickmovement()
-        armvert()
-        claw()
         if brain.timer.time(SECONDS) >= 104:
             break
 
