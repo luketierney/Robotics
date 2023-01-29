@@ -69,7 +69,10 @@ def onauton_autonomous_0():
 
 def ondriver_drivercontrol_0():
     brain.timer.clear()
+    brain.screen.set_pen_width(40)
     while True:
+        controller_1.screen.set_cursor(1, 1)
+        controller_1.screen.print(brain.timer.time(SECONDS), "Seconds                                               ")
         joystickmovement()
         if brain.timer.time(SECONDS) >= 104:
             break
