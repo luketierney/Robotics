@@ -45,8 +45,8 @@ def backward(tiles):
 def joystickmovement():
     a1 = controller_1.axis1.position()
     a2 = controller_1.axis4.position()
-    leftside = a2*a2/10000 
-    rightside = a2*(-a2+100)/10000
+    leftside = a1*a2/10000 
+    rightside = a1*(-a2+100)/10000
     motor_1.set_velocity(speed*leftside, PERCENT)
     motor_2.set_velocity(-speed*leftside, PERCENT)
     motor_3.set_velocity(-speed*rightside, PERCENT)
