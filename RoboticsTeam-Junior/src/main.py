@@ -29,7 +29,7 @@ wait(30, MSEC)
 # ---------------------------------------------------------------------------- #
 
 # Begin project code
-timepertile = 1
+timeperfoot = 1
 timefor360 = 1
 speed = 100
 def go(ttime, one, two, three, four):
@@ -80,6 +80,7 @@ def endgame():
     if controller_1.buttonL1.pressing() and (brain.timer.time(SECONDS) >= 95):
         motor_1.spin_for(FORWARD, 5, TURNS, wait=False)
 def when_started1():
+    global timepertile, timeperfoot
     timepertile = timeperfoot * 2
     motor_1.set_velocity(0, PERCENT)
     motor_2.set_velocity(0, PERCENT)
