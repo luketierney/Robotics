@@ -1,6 +1,8 @@
 #region VEXcode Generated Robot Configuration
+# Imports
 from vex import *
 import urandom
+import math
 
 # Brain should be defined by default
 brain=Brain()
@@ -26,9 +28,6 @@ wait(30, MSEC)
 #                                                                              #
 # ---------------------------------------------------------------------------- #
 
-# Library imports
-from vex import *
-import math
 # Begin project code
 timepertile = 1
 timefor360 = 1
