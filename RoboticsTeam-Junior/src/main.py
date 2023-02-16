@@ -42,6 +42,8 @@ def backward(tiles):
     global timepertile
     ttime = tiles * timepertile
     go(ttime, -1, -1, -1, -1)
+def autoroller(degrees):
+    motor_1.spin_for(FORWARD, degrees, DEGREES)
 def joystickmovement():
     a1 = controller_1.axis1.position()
     a2 = controller_1.axis4.position()
@@ -51,6 +53,13 @@ def joystickmovement():
     motor_2.set_velocity(-speed*leftside, PERCENT)
     motor_3.set_velocity(-speed*rightside, PERCENT)
     motor_4.set_velocity(speed*rightside, PERCENT)
+def rollermovement():
+    if controller_1.buttonR1.pressing():
+        motor_5.set_velocity(100, PERCENT)
+    elif controller_1.buttonR2.pressing():
+        motor_5.set_velocity(-100, PERCENT)
+    else:
+        motor_5.set_velocity(0, PERCENT)
 def when_started1():
     timeperfoot = 1 
     timefor360 = 2
@@ -64,8 +73,8 @@ def when_started1():
 
 def onauton_autonomous_0():
     brain.timer.clear()
-    for each in range(0,1):
-        pass
+    backward(.25)
+    autoroller(300)
 
 def ondriver_drivercontrol_0():
     brain.timer.clear()
@@ -74,8 +83,12 @@ def ondriver_drivercontrol_0():
         controller_1.screen.set_cursor(1, 1)
         controller_1.screen.print(brain.timer.time(SECONDS), "Seconds                                               ")
         joystickmovement()
-        if brain.timer.time(SECONDS) >= 104:
-            break
+        rollermovement()
+        if (brain.timer.time(SECONDS) >= 102) and (brain.timer.time(SECONDS) < 104):
+            motor_6.set_velocity(100, PERCENT)
+        if (brain.timer.time(SECONDS) >= 104):
+            motor_6.set_velocity(0, PERCENT)
+ 
 
 # create a function for handling the starting and stopping of all autonomous tasks
 def vexcode_auton_function():
