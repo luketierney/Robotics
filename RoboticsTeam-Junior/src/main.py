@@ -90,7 +90,7 @@ def when_started1():
 
 def onauton_autonomous_0():
     brain.timer.clear()
-    backward(.25)
+    backward(-.25)
     autoroller(300)
 
 def ondriver_drivercontrol_0():
