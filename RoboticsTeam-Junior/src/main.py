@@ -1,3 +1,23 @@
+#region VEXcode Generated Robot Configuration
+from vex import *
+import urandom
+
+# Brain should be defined by default
+brain=Brain()
+
+# Robot configuration code
+motor_2 = Motor(Ports.PORT2, GearSetting.RATIO_18_1, False)
+motor_6 = Motor(Ports.PORT6, GearSetting.RATIO_18_1, False)
+controller_1 = Controller(PRIMARY)
+motor_3 = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
+motor_4 = Motor(Ports.PORT4, GearSetting.RATIO_18_1, False)
+motor_5 = Motor(Ports.PORT5, GearSetting.RATIO_18_1, False)
+motor_1 = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
+
+
+# wait for rotation sensor to fully initialize
+wait(30, MSEC)
+#endregion VEXcode Generated Robot Configuration
 # ---------------------------------------------------------------------------- #
 #                                                                              #
 # 	Module:       main.py                                                      #
@@ -13,7 +33,7 @@ import math
 # Begin project code
 timepertile = 1
 timefor360 = 1
-speed = 1
+speed = 100
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -47,10 +67,10 @@ def autoroller(degrees):
 def joystickmovement():
     Left = controller_1.axis2.position()
     Right = controller_1.axis3.position()
-    motor_1.set_velocity(speed*Left, PERCENT)
-    motor_2.set_velocity(-speed*Left, PERCENT)
-    motor_3.set_velocity(-speed*Right, PERCENT)
-    motor_4.set_velocity(speed*Right, PERCENT)
+    motor_1.set_velocity(speed*Left/100, PERCENT)
+    motor_2.set_velocity(-speed*Left/100, PERCENT)
+    motor_3.set_velocity(-speed*Right/100, PERCENT)
+    motor_4.set_velocity(speed*Right/100, PERCENT)
 def rollermovement():
     if controller_1.buttonR1.pressing():
         motor_5.set_velocity(100, PERCENT)
@@ -62,9 +82,6 @@ def endgame():
     if controller_1.buttonL1.pressing() and (brain.timer.time(SECONDS) >= 95):
         motor_1.spin_for(FORWARD, 5, TURNS, wait=False)
 def when_started1():
-    timeperfoot = 1 
-    timefor360 = 2
-    speed = 100
     timepertile = timeperfoot * 2
     motor_1.set_velocity(0, PERCENT)
     motor_2.set_velocity(0, PERCENT)
