@@ -11,8 +11,8 @@
 from vex import *
 import math
 # Begin project code
-timepertile = 0
-timefor360 = 0
+timepertile = 1
+timefor360 = 1
 speed = 0
 def go(ttime, one, two, three, four):
     global speed
