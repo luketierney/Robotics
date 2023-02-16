@@ -49,8 +49,8 @@ def joystickmovement():
     Right = controller_1.axis3.position()
     motor_1.set_velocity(speed*Left, PERCENT)
     motor_2.set_velocity(-speed*Left, PERCENT)
-    motor_3.set_velocity(-speed*Left, PERCENT)
-    motor_4.set_velocity(speed*Left, PERCENT)
+    motor_3.set_velocity(-speed*Right, PERCENT)
+    motor_4.set_velocity(speed*Right, PERCENT)
 def rollermovement():
     if controller_1.buttonR1.pressing():
         motor_5.set_velocity(100, PERCENT)
