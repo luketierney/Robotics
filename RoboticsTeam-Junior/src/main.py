@@ -86,6 +86,7 @@ def ondriver_drivercontrol_0():
             motor_6.set_velocity(100, PERCENT)
         if (brain.timer.time(SECONDS) >= 104):
             motor_6.set_velocity(0, PERCENT)
+        wait(100)
  
 
 # create a function for handling the starting and stopping of all autonomous tasks
