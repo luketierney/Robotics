@@ -13,7 +13,7 @@ import math
 # Begin project code
 timepertile = 1
 timefor360 = 1
-speed = 0
+speed = 1
 def go(ttime, one, two, three, four):
     global speed
     motor_1.set_velocity(speed*one, PERCENT)
@@ -45,14 +45,12 @@ def backward(tiles):
 def autoroller(degrees):
     motor_1.spin_for(FORWARD, degrees, DEGREES)
 def joystickmovement():
-    a1 = controller_1.axis1.position()
-    a2 = controller_1.axis4.position()
-    leftside = a1*a2/10000 
-    rightside = a1*(-a2+100)/10000
-    motor_1.set_velocity(speed*leftside, PERCENT)
-    motor_2.set_velocity(-speed*leftside, PERCENT)
-    motor_3.set_velocity(-speed*rightside, PERCENT)
-    motor_4.set_velocity(speed*rightside, PERCENT)
+    Left = controller_1.axis2.position()
+    Right = controller_1.axis3.position()
+    motor_1.set_velocity(speed*Left, PERCENT)
+    motor_2.set_velocity(-speed*Left, PERCENT)
+    motor_3.set_velocity(-speed*Left, PERCENT)
+    motor_4.set_velocity(speed*Left, PERCENT)
 def rollermovement():
     if controller_1.buttonR1.pressing():
         motor_5.set_velocity(100, PERCENT)
