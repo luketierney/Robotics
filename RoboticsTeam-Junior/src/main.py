@@ -6,14 +6,13 @@ import urandom
 brain=Brain()
 
 # Robot configuration code
+motor_1 = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
 motor_2 = Motor(Ports.PORT2, GearSetting.RATIO_18_1, False)
-motor_6 = Motor(Ports.PORT6, GearSetting.RATIO_18_1, False)
-controller_1 = Controller(PRIMARY)
 motor_3 = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
 motor_4 = Motor(Ports.PORT4, GearSetting.RATIO_18_1, False)
 motor_5 = Motor(Ports.PORT5, GearSetting.RATIO_18_1, False)
-motor_1 = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False)
-
+motor_6 = Motor(Ports.PORT6, GearSetting.RATIO_18_1, False)
+controller_1 = Controller(PRIMARY)
 
 # wait for rotation sensor to fully initialize
 wait(30, MSEC)
