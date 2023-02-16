@@ -58,6 +58,9 @@ def rollermovement():
         motor_5.set_velocity(-100, PERCENT)
     else:
         motor_5.set_velocity(0, PERCENT)
+def endgame():
+    if controller_1.buttonL1.pressing() and (brain.timer.time(SECONDS) >= 95):
+        motor_1.spin_for(FORWARD, 5, TURNS, wait=False)
 def when_started1():
     timeperfoot = 1 
     timefor360 = 2
@@ -82,10 +85,7 @@ def ondriver_drivercontrol_0():
         controller_1.screen.print(brain.timer.time(SECONDS), "Seconds                                               ")
         joystickmovement()
         rollermovement()
-        if (brain.timer.time(SECONDS) >= 102) and (brain.timer.time(SECONDS) < 104):
-            motor_6.set_velocity(100, PERCENT)
-        if (brain.timer.time(SECONDS) >= 104):
-            motor_6.set_velocity(0, PERCENT)
+        endgame()
         wait(100)
  
 
